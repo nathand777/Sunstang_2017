@@ -4,9 +4,6 @@
  * Description: LHCU code 4.0 adding hazard and strobe functionalities
  */
 
-
-
-
 #include "mcp_can.h"
 #include <SPI.h>
 
@@ -14,12 +11,14 @@ const int SPI_CS_PIN = 10;
 
 MCP_CAN CAN(SPI_CS_PIN);
 
+//pin numbers
 const int leftLed = 2;
 const int rightLed = 3;
 const int headLight = 5;
 const int brakes = 6;
 const int horn = 4;
 
+//timing variables
 unsigned long previousMillis = 0;
 int blinkinterval = 500;
 bool leftLedState;
