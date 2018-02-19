@@ -203,24 +203,10 @@ PotRead(Accelerator, Acc_Raw, Acc_Float, AccPot_Min, AccPot_Max);
 
 brakesOut = digitalRead(Brakes);
 
-if(HornOut)
-{
-  hornOn=HornOut;
-  bufSend[0]= HornOut;
-  Serial.println("Horn triggered");
-  Serial.print("Sending: ");
-for (int i = 0; i < 5; i++)    // print the data
-    {
-      Serial.print(bufSend[i]);
-      Serial.print("\t");
-    }
-    Serial.println();
-  CAN.sendMsgBuf(LHCUsendID,0,5,bufSend);
-}
 if(HornOut!=hornOn)
 {
   hornOn=HornOut;
-  bufSend[0]=HornOut;
+  bufSend[0]= HornOut;
   Serial.println("Horn triggered");
   Serial.print("Sending: ");
 for (int i = 0; i < 5; i++)    // print the data
@@ -264,7 +250,8 @@ for (int i = 0; i < 5; i++)    // print the data
 
   CAN.sendMsgBuf(LHCUsendID,0,5,bufSend);
 }
-if(HeadOut)
+
+if(HeadOut!=headOn)
 {
   headOn=HeadOut;
   bufSend[3]= HeadOut;
@@ -277,21 +264,6 @@ for (int i = 0; i < 5; i++)    // print the data
     }
     Serial.println();
 
-  CAN.sendMsgBuf(LHCUsendID,0,5,bufSend);
-}
-
-if(HeadOut!=headOn)
-{
-  headOn=HeadOut;
-  bufSend[3]=HeadOut;
-  Serial.println("Head triggered");
-  Serial.print("Sending: ");
-for (int i = 0; i < 5; i++)    // print the data
-    {
-      Serial.print(bufSend[i]);
-      Serial.print("\t");
-    }
-    Serial.println();
   CAN.sendMsgBuf(LHCUsendID,0,5,bufSend);
 }
 
