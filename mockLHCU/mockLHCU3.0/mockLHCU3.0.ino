@@ -1,3 +1,12 @@
+/*
+ * Name: Steven Lawrence
+ * Date: 02/19/18
+ * Description: LHCU code 4.0 adding hazard and strobe functionalities
+ */
+
+
+
+
 #include "mcp_can.h"
 #include <SPI.h>
 
