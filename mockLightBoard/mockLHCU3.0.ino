@@ -16,6 +16,10 @@ int blinkinterval = 500;
 bool leftLedState;
 bool rightLedState;
 
+ unsigned char lenReceive = 0;
+  unsigned char bufReceive[5]={0,0,0,0,0};
+  unsigned char canId=0;
+
 void setup() {
   Serial.begin(115200);
 
@@ -47,9 +51,6 @@ void setup() {
 }
 
 void loop() {
-  unsigned char lenReceive = 0;
-  unsigned char bufReceive[5];
-  unsigned char canId=0;
   unsigned long currentMillis = millis();
 
   if(CAN_MSGAVAIL == CAN.checkReceive()){
@@ -59,7 +60,7 @@ void loop() {
 
     // Print the data from the can message, including the ID it was associated with
     Serial.print("Sensor Value from ID: ");
-    Serial.print(canId);
+    Serial.print(canId,BIN);
     Serial.print(" = ");
 
     for (int i = 0; i < lenReceive; i++)    // print the data
